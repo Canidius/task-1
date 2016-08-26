@@ -1,0 +1,22 @@
+<div>
+  <div class="container">
+    <div class= "row">
+      <div class = "center-block col-sm-12">
+        <form class = "form-group" ng-submit="userList.search(userList.searchName)">
+          <input type="text" class="form-control"  ng-model="userList.searchName" name="username">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class= "container">
+    <div class= "row">
+      <div class = "center-block col-sm-12">
+        <ul class= "list-group">
+          <li class="list-group-item" ng-repeat="user in userList.users track by $index">
+            <a ui-sref="login({login:user.login})"><img  ng-src="{{user.avatar_url}}" width="100px" height="100px"></a>
+            <span ><a ui-sref="login({login:user.login})">{{user.login}}</a></span>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

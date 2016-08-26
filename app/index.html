@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="" ng-app='app'>
+<html lang="" >
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -19,25 +19,11 @@
     <!-- endbuild -->
     
   </head>
-  <body>
-  <header class = "header">
-    <span>Task 1</span>
+  <body ng-app='app'>
+  <header class = "navbar navbar-default navbar-fixed-top">
+    <span class="navbar-brand"><a ui-sref= "home">Task 1</a></span>
   </header>
-  <div ng-controller="UserListController as userList">
-    <div class = "center-block">
-      <form class = "form-group">
-        <input type="text" class="form-control" ng-model="userList.searchName" name="username">
-      </form>
-    </div>
-    <div>
-        <ul class= "list-group">
-          <li class="list-group-item" ng-repeat="user in userList.users track by $index">
-            <img ng-src="{{user.avatar_url}}" width="100px" height="100px">
-            <span>{{user.login}}</span>
-            <span>followers = {{user.followers}}</span>
-            <span>repos = {{user.repos}}</span>
-        </ul>
-    </div>
+  <div ui-view>
   </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     
@@ -46,6 +32,7 @@
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     
@@ -66,8 +53,9 @@
     <!-- endbuild -->
     
     <!-- build:js scripts/main.js -->
-    
     <script src="scripts/main.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/UserProfileController.js"></script>
     <script src="scripts/UserListController.js"></script>
     <script src="scripts/userListService.js"></script>
     <!-- endbuild -->
