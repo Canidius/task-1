@@ -1,0 +1,56 @@
+
+<div class="container">
+  <div class= "row">
+    <div class= "col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+        <h4 class="panel-title">{{userProfile.user.name}}</h4>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class = "text-center  col-sm-4">
+              <img class= "profile-icon img-responsive img-thumbnail" ng-src="{{userProfile.user.avatar_url}}">
+              <a class="btn btn-default btn-block" ng-href="{{userProfile.user.html_url}}">Go to Profile</a>
+            </div>
+            <div class = "col-sm-8">
+              <ul class= "list-group">
+                <li class= "list-group-item text-center">
+                  <span class="label label-success">repos: {{userProfile.user.public_repos}}</span>
+                  <span class="label label-warning">gists: {{userProfile.user.public_gists}}</span>
+                  <span class="label label-danger">followers: {{userProfile.user.followers}}</span>
+                  <span class="label label-info">following: {{userProfile.user.following}}</span>
+                </li>
+                <li class= "list-group-item"><b>Username:</b> {{userProfile.user.login}}</li>
+                <li class= "list-group-item"><b>Company:</b> {{userProfile.user.company}}</li>
+                <li class= "list-group-item"><b>Blog:</b> {{userProfile.user.blog}}</li>
+                <li class= "list-group-item"><b>Location:</b> {{userProfile.user.location}}</li>
+                <li class= "list-group-item"><b>e-mail:</b> {{userProfile.user.email}}</li>
+                <li class= "list-group-item"><b>Created:</b> {{userProfile.user.created_at}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">Repos</h4>
+        </div>
+        <div class="panel-body">
+          <div ng-repeat="repo in userProfile.repos track by $index">
+            <div class="row">
+              <div class="col-sm-8">
+                <a ng-href="{{repo.html_url}}"><h4>{{repo.name}}</h4></a>
+                <span>{{repo.description}}</span>
+              </div>
+              <div class="col-sm-4 text-center block">
+                <span class="label label-success">forks: {{repo.forks_count}}</span>
+                <span class="label label-warning">watchers: {{repo.watchers_count}}</span>
+              </div>
+            </div>
+            <hr ng-hide='$last'></hr>
+          </div>
+        </div>
+      </div>
+    </div>      
+  </div>
+</div>
