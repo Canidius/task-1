@@ -4,19 +4,9 @@
 		.module('app')
 		.config(config)
 
+	config.$inject=['$stateProvider','$urlRouterProvider'];
+	
 	function config($stateProvider,$urlRouterProvider){
-
-
-		$urlRouterProvider
-			.when('/user/:login', userProfileRefresh);
-
-		userProfileRefresh.$inject = ['$state','$match','$stateParams'];
-			
-		function userProfileRefresh($state,$match,$stateParams){
-			if ($state.$current.navigable != 'login' || !equalForKeys($match, $stateParams)) {
-        		$state.transitionTo('login', $match, false)
-			}
-		};
 
 		$urlRouterProvider.otherwise('/home');
 
@@ -36,15 +26,21 @@
 				controller: 'UserProfileController',
 				controllerAs:'userProfile',
 				resolve:{
-					userProfileResolve:
-						function(userProfileService,$stateParams){
+					userProfileResolve: userProfileResolve,
+					userProfileReposResolve: userProfileReposResolve
+						
+				}
+			});
+
+			userProfileResolve.$inject=['userProfileService','$stateParams'];
+			function userProfileResolve(userProfileService,$stateParams){
 							return userProfileService.getUser($stateParams.login)
-						},
-					userProfileReposResolve:
-						function(userProfileService,$stateParams){
+						};
+
+			userProfileReposResolve.$inject=['userProfileService','$stateParams'];		
+
+			function userProfileReposResolve(userProfileService,$stateParams){
 							return userProfileService.getUserRepos($stateParams.login)
 						}
-				}
-			})
 	}
 })();
